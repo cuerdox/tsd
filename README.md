@@ -1,5 +1,7 @@
+# Token-level Word Sense Disambiguation for transformer models
+
 _Unfinished work in progress..._
----
+
 
 Transformer models trained on massive amounts of unlabeled raw data demonstrate state-of-the-art performance in most if not all NLP tasks, surpassing human-level ability in many of them. At the same time such models still show potential for improvement on tasks where relational information among concepts plays important role, for example HyperLex. This gap can be filled once an effective way to induce information contained in existing relational sources, carefully crafted by humans, can be found.
 
