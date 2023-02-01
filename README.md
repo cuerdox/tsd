@@ -13,7 +13,7 @@ Once such token sense vocabulary is built, it is used to extract contextual vect
 
 ### Network architecture overview
 
-The most simple architecture to implement solution for this problem was chosen to include a simple fully connected classification network shared among all tokens which receives contextual hidden representation for a token from the underlying transformer model and an embedding layer with specific learned value for each token to compensate for mis-alignment among token class identifiers. During final testing a heuristic approach is used to combine predicted senses from multiple tokens representing a full word from test corpora is used, which will be unnecessary once model architecture is changed to the transformer architecture in further experiments.
+The simplest architecture to implement solution for this problem was chosen to include a fully connected classification network shared among all tokens which receives contextual hidden representation for a token from the underlying transformer model and an embedding layer with specific learned value for each token to compensate for mis-alignment among token class identifiers. During final testing a heuristic approach is used to combine predicted senses from multiple tokens for multi-token word from test corpora, which will be unnecessary once model architecture is changed to the transformer architecture in further experiments.
 
 Three ways of combining token contextual representation with dimension `ctx_dim` and learnable token embedding with dimension `emb_dim` were estimated:
 
@@ -54,7 +54,7 @@ Confusion matrix shows that model clearly distinguishes between parts of speech 
 
 **F-measure** with equal preference for precision and recall was chosen as optimization objective due to its more accurate representation of classification performance in a multi-class classification problem compared with simple classification accuracy.
 
-Full **grid search** with restricted set of hyperparameter choices didn't s show any unexpected results, proving that wider layers and larger embeddings translate into better performance, however 1 layer deep network showed better performance than a 5 layer deep network, which is explained by only two epochs chosen for search experiment duration due to computation budget which is clearly insufficient for a deeper network training. Top 9 performing trials shown below:
+Full **grid search** with restricted set of hyperparameter choices didn't s show any unexpected results, proving that wider layers and larger embeddings translate into better performance, however 1 layer deep network showed better performance than a 5 layer deep network, which is explained by only two epochs chosen for search experiment duration due to computation budget which is clearly insufficient for a deeper network training. Top 9 performing trials  are shown below:
 
 ![grid_scatter_top.png](img/grid_scatter_top.png?fileId=134487#mimetype=image%2Fpng&hasPreview=true)![grid_parallel_top.png](img/grid_parallel_top.png?fileId=134488#mimetype=image%2Fpng&hasPreview=true)Computationally comparable number of epochs consumed by **sampling parameters** using **OnePlusOne search algorithm with ASHA** scheduler not only allows to explore significantly larger parameter space (two orders of magnitude larger in this experiment) illuminating some inter-parameter patterns, like learning rate difference for different layers, but also achieves around 60% higher overall F1 score giving more realistic picture of potential model performance:
 
